@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Fast And Fitness</string>
+    <string name="second_page_name">Random Direction</string>
+    <string name="home_page_title">Training Method</string>
+    <string name="random_direction_button_text">Random Direction</string>
+</resources>
