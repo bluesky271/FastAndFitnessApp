@@ -3,7 +3,7 @@ package com.example.fastnfitness.fastandfitness;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SecondActivity extends AppCompatActivity {
+public class RandomDirectionPageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
