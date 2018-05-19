@@ -1,6 +1,7 @@
 package com.example.fastnfitness.fastandfitness;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -19,9 +20,10 @@ public class RandomDirectionPageActivity extends AppCompatActivity {
 
         final ImageView img = findViewById(R.id.imageViewExampleId);
         final String imageFileName = "random_arrow_" + random.nextInt(numberOfImages);
-        img.setImageDrawable(
-                getResources().getDrawable(getResourceID(imageFileName, getApplicationContext()))
-        );
+        final MediaPlayer blipSound = MediaPlayer.create(this, R.raw.blip_sound);
+
+        blipSound.start();
+        img.setImageDrawable(getResources().getDrawable(getResourceID(imageFileName, getApplicationContext())));
     }
 
     protected static int getResourceID(final String resName, final Context ctx) {
