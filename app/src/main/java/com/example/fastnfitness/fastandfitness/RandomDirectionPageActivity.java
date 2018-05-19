@@ -10,6 +10,7 @@ import java.util.Random;
 public class RandomDirectionPageActivity extends AppCompatActivity {
 
     final Random random = new Random();
+    final int numberOfImages = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +18,7 @@ public class RandomDirectionPageActivity extends AppCompatActivity {
         setContentView(R.layout.random_direction_page);
 
         final ImageView img = findViewById(R.id.imageViewExampleId);
-        final String imageFileName = "random_arrow_" + random.nextInt(4);
+        final String imageFileName = "random_arrow_" + random.nextInt(numberOfImages);
         img.setImageDrawable(
                 getResources().getDrawable(getResourceID(imageFileName, getApplicationContext()))
         );
