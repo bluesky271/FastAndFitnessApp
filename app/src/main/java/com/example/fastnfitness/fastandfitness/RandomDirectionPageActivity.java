@@ -17,7 +17,10 @@ public class RandomDirectionPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.random_direction_page);
+        playSoundAndGenerateRandomImage();
+    }
 
+    protected void playSoundAndGenerateRandomImage() {
         final ImageView img = findViewById(R.id.imageViewExampleId);
         final String imageFileName = "random_arrow_" + random.nextInt(numberOfImages);
         final MediaPlayer blipSound = MediaPlayer.create(this, R.raw.blip_sound);
