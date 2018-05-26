@@ -2,6 +2,7 @@ package com.example.fastnfitness.fastandfitness;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.SoundEffectConstants;
 import android.widget.RelativeLayout;
 
 import java.util.Random;
@@ -21,6 +22,7 @@ public class RandomDirectionPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.random_direction_page);
         myLayout = findViewById(R.id.imageViewExampleId);
+
         Timer timer = new Timer();
         MyTimer myTime = new MyTimer();
         timer.schedule(myTime, startTime, timeBetweenImages);
@@ -30,6 +32,7 @@ public class RandomDirectionPageActivity extends AppCompatActivity {
         public void run() {
             runOnUiThread(new Runnable() {
                 public void run() {
+                    myLayout.playSoundEffect(SoundEffectConstants.CLICK);
                     myLayout.setBackgroundResource(arrowImages[getRandomNumber()]);
                 }
 
