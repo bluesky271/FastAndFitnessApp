@@ -1,38 +1,45 @@
 package com.example.fastnfitness.fastandfitness;
 
-import android.content.Context;
-import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.support.v7.app.AppCompatActivity;
+import android.view.SoundEffectConstants;
+import android.widget.RelativeLayout;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class RandomDirectionPageActivity extends AppCompatActivity {
 
-    final Random random = new Random();
-    final int numberOfImages = 4;
+    private RelativeLayout myLayout;
+    final int arrowImages[] = {R.drawable.random_arrow_0, R.drawable.random_arrow_1, R.drawable.random_arrow_2, R.drawable.random_arrow_3};
+    final int numberOfImages = arrowImages.length;
+    final int startTime = 4000;
+    final int timeBetweenImages = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.random_direction_page);
+        myLayout = findViewById(R.id.imageViewExampleId);
 
-        final ImageView img = findViewById(R.id.imageViewExampleId);
-        final String imageFileName = "random_arrow_" + random.nextInt(numberOfImages);
-        final MediaPlayer blipSound = MediaPlayer.create(this, R.raw.blip_sound);
-
-        blipSound.start();
-        img.setImageDrawable(getResources().getDrawable(getResourceID(imageFileName, getApplicationContext())));
+        Timer timer = new Timer();
+        MyTimer myTime = new MyTimer();
+        timer.schedule(myTime, startTime, timeBetweenImages);
     }
 
-    protected static int getResourceID(final String resName, final Context ctx) {
-        final int ResourceID = ctx.getResources().getIdentifier(resName, "drawable", ctx.getApplicationInfo().packageName);
-        if (ResourceID == 0) {
-            throw new IllegalArgumentException("No resource string found with name: " + resName);
-        }
-        else {
-            return ResourceID;
+    class MyTimer extends TimerTask {
+        public void run() {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    myLayout.playSoundEffect(SoundEffectConstants.CLICK);
+                    myLayout.setBackgroundResource(arrowImages[getRandomNumber()]);
+                }
+
+                private int getRandomNumber() {
+                    return new Random().nextInt(numberOfImages);
+                }
+            });
         }
     }
 }
